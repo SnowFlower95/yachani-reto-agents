@@ -1,0 +1,26 @@
+<div class="group-grid">
+  @for (group of groups; track group.name) {
+    <article class="group-card">
+      <div class="group-top">
+        <span class="subject-icon" aria-hidden="true">{{ group.icon }}</span>
+        @if (tutor) {
+          <span class="active-tag">Activo</span>
+        } @else if (group.unread) {
+          <span class="unread" [attr.aria-label]="group.unread + ' mensajes sin leer'">{{
+            group.unread
+          }}</span>
+        }
+      </div>
+      <h3>{{ group.name }}</h3>
+      <p>{{ group.subject }}</p>
+      <div class="members">
+        <div class="initials" aria-label="Integrantes">
+          @for (initials of group.initials; track initials) {
+            <span>{{ initials }}</span>
+          }
+        </div>
+        <small>{{ group.count }}{{ tutor ? ' de 6 estudiantes' : ' integrantes' }}</small>
+      </div>
+    </article>
+  }
+</div>

@@ -1,0 +1,181 @@
+<app-application-layout [tutor]="tutor">
+  <div class="dashboard-content">
+    @if (tutor) {
+      <section class="stats-grid" aria-label="Estadísticas de tutoría">
+        @for (item of stats; track item.label) {
+          <article class="stat-card">
+            <span class="stat-icon" aria-hidden="true">
+              @if (item.icon === 'people') {
+                <img src="/assets/1095a.svg" alt="" />
+              } @else {
+                {{ item.icon }}
+              }
+            </span>
+            <div>
+              <strong>{{ item.value }}</strong>
+              <p>{{ item.label }}</p>
+            </div>
+          </article>
+        }
+      </section>
+      <div class="dashboard-grid">
+        <div class="main-column">
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Próximas sesiones</h2>
+              <button type="button" disabled aria-describedby="unavailable">
+                Ver calendario →
+              </button>
+            </div>
+            <div class="sessions">
+              @for (item of sessions; track item.title) {
+                <article class="session-row">
+                  <div class="date">
+                    <small>{{ item.month }}</small
+                    ><strong>{{ item.day }}</strong>
+                  </div>
+                  <div class="session-detail">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                  </div>
+                  <button type="button" disabled aria-describedby="unavailable" class="secondary">
+                    Ver sesión
+                  </button>
+                </article>
+              }
+            </div>
+          </section>
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Mis grupos</h2>
+              <button type="button" disabled aria-describedby="unavailable">
+                Gestionar grupos →
+              </button>
+            </div>
+            <app-group-cards [tutor]="true" />
+          </section>
+        </div>
+        <div class="aside-column">
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Solicitudes pendientes</h2>
+              <button type="button" disabled aria-describedby="unavailable">Ver todas</button>
+            </div>
+            <div class="requests">
+              @for (item of requests; track item.name) {
+                <article class="request-row">
+                  <span class="request-avatar">{{ item.initials }}</span>
+                  <div class="request-detail">
+                    <h3>{{ item.name }}</h3>
+                    <p>Solicita unirse a {{ item.group }}</p>
+                  </div>
+                  <div class="request-actions">
+                    <button
+                      type="button"
+                      disabled
+                      aria-describedby="unavailable"
+                      [attr.aria-label]="'Aceptar solicitud de ' + item.name"
+                      class="accept"
+                    >
+                      ✓</button
+                    ><button
+                      type="button"
+                      disabled
+                      aria-describedby="unavailable"
+                      [attr.aria-label]="'Rechazar solicitud de ' + item.name"
+                      class="reject"
+                    >
+                      ×
+                    </button>
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        </div>
+      </div>
+    } @else {
+      <div class="dashboard-grid">
+        <div class="main-column">
+          <section class="next-session" aria-labelledby="next-title">
+            <span class="session-label">PRÓXIMA SESIÓN</span>
+            <h2 id="next-title">{{ next.title }}</h2>
+            <p>Grupo: {{ next.group }}</p>
+            <div class="session-bottom">
+              <div class="session-meta">
+                <span>▦ {{ next.time }}</span
+                ><span>◷ {{ next.duration }}</span
+                ><span>▣ {{ next.mode }}</span>
+              </div>
+              <button disabled aria-describedby="unavailable" type="button" class="session-button">
+                Ver sesión
+              </button>
+            </div>
+          </section>
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Mis grupos</h2>
+              <button type="button" disabled aria-describedby="unavailable">Ver todos →</button>
+            </div>
+            <app-group-cards />
+          </section>
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Grupos recomendados para ti</h2>
+              <button type="button" disabled aria-describedby="unavailable">Explorar más →</button>
+            </div>
+            <div class="recommendations">
+              @for (item of recommendations; track item.name) {
+                <article class="recommendation">
+                  <span class="match">{{ item.match }}% compatible</span>
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.description }}</p>
+                  <div class="tags">
+                    <span>{{ item.subject }}</span
+                    ><span>{{ item.mode }}</span>
+                  </div>
+                  <button type="button" disabled aria-describedby="unavailable" class="secondary">
+                    Ver detalles
+                  </button>
+                </article>
+              }
+            </div>
+          </section>
+        </div>
+        <div class="aside-column">
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Avisos recientes</h2>
+              <button type="button" disabled aria-describedby="unavailable">Ver todos</button>
+            </div>
+            <div class="notices">
+              @for (item of notices; track item.text) {
+                <article>
+                  <h3>{{ item.text }}</h3>
+                  <p>{{ item.time }}</p>
+                </article>
+              }
+            </div>
+          </section>
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Continúa repasando</h2>
+              <button type="button" disabled aria-describedby="unavailable">Flashcards →</button>
+            </div>
+            @for (item of progress; track item.title) {
+              <div class="progress-item">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.done }} de {{ item.total }} tarjetas completadas</p>
+                <div class="progress-row">
+                  <progress [value]="item.percent" max="100" [attr.aria-label]="item.title">
+                    {{ item.percent }}%</progress
+                  ><span>{{ item.percent }}%</span>
+                </div>
+              </div>
+            }
+          </section>
+        </div>
+      </div>
+    }
+  </div>
+</app-application-layout>

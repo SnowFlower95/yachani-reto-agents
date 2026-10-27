@@ -1,0 +1,239 @@
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.07fr) minmax(0, 1fr);
+  gap: 24px;
+}
+.main-column,
+.aside-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+.panel {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--white);
+  box-shadow: 0 10px 25px var(--panel-shadow);
+  min-width: 0;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.section-heading h2 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+.section-heading button {
+  border: 0;
+  background: none;
+  color: var(--blue);
+  font-size: 11px;
+  flex-shrink: 0;
+  padding: 4px 0;
+}
+.dashboard-content h3 {
+  font-size: 13px;
+  margin: 0 0 5px;
+  line-height: 1.4;
+}
+.dashboard-content p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+}
+.next-session {
+  background: radial-gradient(circle at 95% 0, var(--blue) 0 19%, transparent 19%), var(--navy);
+  color: var(--white);
+  padding: 22px;
+  border-radius: 20px;
+  min-height: 158px;
+}
+.session-label {
+  font-size: 10px;
+  padding: 7px 10px;
+  background: var(--session-label-bg);
+  border-radius: 20px;
+  display: inline-block;
+}
+.next-session h2 {
+  font-size: 20px;
+  margin: 18px 0 7px;
+  line-height: 1.3;
+}
+.next-session p {
+  color: var(--pale);
+  font-size: 12px;
+}
+.session-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 10px;
+}
+.session-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 11px;
+  margin-top: 14px;
+  color: var(--pale);
+}
+.session-button {
+  border: 0;
+  background: var(--white);
+  color: var(--navy);
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.recommendations {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+.recommendation {
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.match {
+  color: var(--success);
+  background: var(--success-bg);
+  padding: 7px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.recommendation p {
+  margin-bottom: 12px;
+  flex: 1;
+}
+.tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 13px;
+}
+.tags span {
+  background: var(--pale);
+  padding: 6px;
+  border-radius: 7px;
+  font-size: 9px;
+  font-weight: 600;
+}
+.secondary {
+  border: 0;
+  background: var(--pale);
+  color: var(--blue);
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  width: 100%;
+}
+.notices {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.notices h3 {
+  font-size: 12px;
+}
+.notices p {
+  font-size: 10px;
+}
+.progress-item + .progress-item {
+  margin-top: 17px;
+}
+.progress-item h3 {
+  font-size: 12px;
+}
+.progress-item p {
+  font-size: 10px;
+}
+.progress-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+.progress-row span {
+  font-size: 10px;
+  color: var(--blue);
+  min-width: 28px;
+}
+progress {
+  appearance: none;
+  width: 100%;
+  height: 7px;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--pale);
+}
+progress::-webkit-progress-bar {
+  background: var(--pale);
+}
+progress::-webkit-progress-value {
+  background: var(--blue);
+  border-radius: 10px;
+}
+progress::-moz-progress-bar {
+  background: var(--blue);
+}
+@media (max-width: 1100px) {
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  }
+  .recommendations {
+    grid-template-columns: 1fr;
+  }
+  .panel {
+    padding: 18px;
+  }
+  .section-heading {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .aside-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 580px) {
+  .aside-column {
+    display: flex;
+  }
+  .session-bottom {
+    align-items: start;
+    flex-direction: column;
+  }
+  .next-session h2 {
+    font-size: 18px;
+  }
+  .panel {
+    padding: 18px;
+  }
+  .recommendations {
+    grid-template-columns: 1fr;
+  }
+}

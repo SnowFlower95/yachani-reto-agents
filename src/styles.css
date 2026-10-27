@@ -1,0 +1,146 @@
+@import './app/shared/dashboard-common.css';
+:root {
+  --navy: #0f2742;
+  --blue: #0369a1;
+  --sky: #38bdf8;
+  --background: #f0f9ff;
+  --white: #ffffff;
+  --pale: #e0f2fe;
+  --muted: #52677d;
+  --border: #cee5f3;
+  --error: #b42318;
+  --success: #08783c;
+  --success-bg: #dcfce7;
+  --danger-bg: #fee2e2;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+  color: var(--navy);
+  background: var(--background);
+}
+button,
+input {
+  font: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 4px;
+}
+input[aria-invalid='true'] {
+  border-color: var(--error) !important;
+}
+.primary {
+  border: 0;
+  border-radius: 12px;
+  background: var(--blue);
+  color: var(--white);
+  font-weight: 600;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 25px;
+  font-weight: 700;
+  width: fit-content;
+}
+.brand-icon {
+  display: grid;
+  place-items: center;
+  background: var(--blue);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+.brand-icon img {
+  display: block;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -80px;
+  z-index: 10;
+  padding: 12px;
+  background: var(--white);
+  color: var(--navy);
+}
+.skip-link:focus {
+  top: 12px;
+}
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/roboto-400.ttf') format('truetype');
+}
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/roboto-500.ttf') format('truetype');
+}
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/roboto-600.ttf') format('truetype');
+}
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/roboto-700.ttf') format('truetype');
+}
+:root {
+  --icon-blue-filter: brightness(0) saturate(100%) invert(28%) sepia(75%) saturate(1182%)
+    hue-rotate(170deg) brightness(90%) contrast(98%);
+}
+:root {
+  --blue-glow: #0369a155;
+  --sky-line: #38bdf833;
+  --sky-border: #38bdf866;
+  --banner-muted: #b4ccdc;
+  --illustration-card: #244b68;
+  --sky-soft-border: #38bdf855;
+  --shadow-dark: #0002;
+  --skeleton: #ffffff40;
+  --skeleton-track: #ffffff30;
+  --nav-active: #0369a166;
+  --nav-muted: #bed6e7;
+  --help-bg: #ffffff12;
+  --help-text: #c5dce9;
+  --menu-border: #ffffff55;
+  --panel-shadow: #0f274205;
+  --session-label-bg: #ffffff22;
+}

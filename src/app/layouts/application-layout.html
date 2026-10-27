@@ -1,0 +1,80 @@
+<a href="#main-content" class="skip-link">Saltar al contenido</a>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" [routerLink]="home" aria-label="Yachani, inicio"
+      ><span class="brand-icon"><img src="/assets/9c369.svg" alt="" /></span>Yachani</a
+    >
+    <button
+      class="menu-toggle"
+      type="button"
+      (click)="menuOpen = !menuOpen"
+      [attr.aria-expanded]="menuOpen"
+      aria-controls="main-navigation"
+    >
+      ☰ <span>Menú principal</span>
+    </button>
+    <nav id="main-navigation" [class.open]="menuOpen" aria-label="Menú principal">
+      <p class="nav-caption">MENÚ PRINCIPAL</p>
+      <a [routerLink]="home" class="nav-item active" aria-current="page"
+        ><span class="nav-icon" aria-hidden="true">⌂</span>Inicio</a
+      >
+      @for (item of tutor ? menus.tutor : menus.student; track item.label) {
+        <button
+          type="button"
+          disabled
+          class="nav-item"
+          aria-describedby="unavailable"
+          [attr.title]="item.label + ': no incluida en esta práctica'"
+        >
+          <span class="nav-icon" aria-hidden="true">
+            @if (item.icon === 'people') {
+              <img src="/assets/1201f.svg" alt="" />
+            } @else {
+              {{ item.icon }}
+            }</span
+          >{{ item.label }}
+        </button>
+      }
+    </nav>
+    <div class="help">
+      <strong>¿Necesitas ayuda?</strong>
+      <p>Consulta nuestras preguntas frecuentes o comunícate con soporte.</p>
+      <span class="sr-only">La ayuda y el soporte no están incluidos en esta práctica.</span>
+    </div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar">
+      <div>
+        <h1>Hola, {{ profile.firstName }}</h1>
+        <p>
+          {{
+            tutor
+              ? 'Gestiona tus grupos y acompaña el aprendizaje de tus estudiantes.'
+              : 'Organiza tu aprendizaje y continúa avanzando con tu comunidad.'
+          }}
+        </p>
+      </div>
+      <div class="account">
+        <button
+          class="notification"
+          type="button"
+          disabled
+          aria-describedby="unavailable"
+          [attr.aria-label]="
+            profile.notifications + ' notificaciones. No incluidas en esta práctica.'
+          "
+        >
+          <span aria-hidden="true">♢</span><b>{{ profile.notifications }}</b></button
+        ><span class="avatar">{{ profile.initials }}</span>
+        <div class="profile">
+          <strong>{{ profile.name }}</strong
+          ><small>{{ tutor ? 'Tutora' : 'Estudiante' }}</small>
+        </div>
+      </div>
+    </header>
+    <main id="main-content" tabindex="-1"><ng-content /></main>
+    <p id="unavailable" class="sr-only">
+      Esta acción no está incluida en esta práctica de frontend.
+    </p>
+  </div>
+</div>

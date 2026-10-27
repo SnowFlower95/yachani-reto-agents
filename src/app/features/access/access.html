@@ -1,0 +1,113 @@
+<app-access-layout>
+  <p class="eyebrow">Bienvenido de nuevo</p>
+  <h2>{{ register ? 'Crea tu cuenta' : 'Iniciar sesión' }}</h2>
+  <p class="intro">
+    {{
+      register
+        ? 'Regístrate con tu correo institucional y comienza a aprender en grupo.'
+        : 'Ingresa con tu correo institucional para continuar.'
+    }}
+  </p>
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    @if (register) {
+      <fieldset>
+        <legend>Selecciona tu tipo de usuario</legend>
+        <div class="roles">
+          <label class="role"
+            ><input type="radio" formControlName="role" value="estudiante" /><img
+              src="/assets/f43f6.svg"
+              alt=""
+            /><span><strong>Estudiante</strong><small>Quiero encontrar grupos</small></span></label
+          >
+          <label class="role"
+            ><input type="radio" formControlName="role" value="tutor" /><img
+              src="/assets/9d32c.svg"
+              alt=""
+            /><span><strong>Tutor</strong><small>Quiero orientar grupos</small></span></label
+          >
+        </div>
+      </fieldset>
+      <div class="name-grid">
+        @for (field of ['names', 'surnames']; track field) {
+          <div class="group">
+            <label [for]="field">{{ field === 'names' ? 'Nombres' : 'Apellidos' }}</label
+            ><input
+              [id]="field"
+              [formControlName]="field"
+              [autocomplete]="field === 'names' ? 'given-name' : 'family-name'"
+              required
+              [attr.aria-invalid]="!!error($any(field))"
+              [attr.aria-describedby]="field + '-error'"
+            />
+            <p class="error" [id]="field + '-error'">{{ error($any(field)) }}</p>
+          </div>
+        }
+      </div>
+    }
+    <div class="group">
+      <label for="email">Correo institucional{{ register ? ' UPC' : '' }}</label
+      ><input
+        id="email"
+        type="email"
+        formControlName="email"
+        autocomplete="username"
+        [placeholder]="register ? '' : 'u20xxxxxx@upc.edu.pe'"
+        required
+        [attr.aria-invalid]="!!error('email')"
+        aria-describedby="email-error"
+      />
+      <p class="error" id="email-error">{{ error('email') }}</p>
+    </div>
+    @for (field of register ? ['password', 'confirmation'] : ['password']; track field) {
+      <div class="group">
+        <label [for]="field">{{
+          field === 'password' ? 'Contraseña' : 'Confirmar contraseña'
+        }}</label>
+        <div class="password">
+          <input
+            [id]="field"
+            [type]="visible[field] ? 'text' : 'password'"
+            [formControlName]="field"
+            [autocomplete]="register ? 'new-password' : 'current-password'"
+            [placeholder]="register ? '' : 'Ingresa tu contraseña'"
+            required
+            [attr.aria-invalid]="!!error($any(field))"
+            [attr.aria-describedby]="field + '-error'"
+          /><button
+            type="button"
+            (click)="visible[field] = !visible[field]"
+            [attr.aria-label]="
+              (visible[field] ? 'Ocultar' : 'Mostrar') +
+              ' ' +
+              (field === 'password' ? 'contraseña' : 'confirmación de contraseña')
+            "
+            [attr.aria-pressed]="!!visible[field]"
+          >
+            <img
+              [src]="field === 'confirmation' ? '/assets/ee834.svg' : '/assets/3d673.svg'"
+              alt=""
+            />
+          </button>
+        </div>
+        <p class="error" [id]="field + '-error'">{{ error($any(field)) }}</p>
+      </div>
+    }
+    @if (!register) {
+      <button type="button" class="text-button" disabled aria-describedby="recovery-note">
+        ¿Olvidaste tu contraseña?</button
+      ><span id="recovery-note" class="sr-only"
+        >La recuperación de contraseña no está incluida en esta práctica.</span
+      >
+    }
+    <button class="primary submit" type="submit">
+      {{ register ? 'Registrarse' : 'Iniciar sesión' }}
+    </button>
+    <p role="status" class="status">{{ message }}</p>
+  </form>
+  <p class="switch">
+    {{ register ? '¿Ya tienes cuenta?' : '¿No tienes cuenta?' }}
+    <a [routerLink]="register ? '/login' : '/registro'">{{
+      register ? 'Inicia Sesión' : 'Regístrate'
+    }}</a>
+  </p>
+</app-access-layout>
