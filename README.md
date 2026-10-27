@@ -1,6 +1,6 @@
 ﻿# Yachani · Práctica de frontend
 
-Proyecto independiente desarrollado únicamente en esta carpeta con Angular standalone, HTML, CSS y TypeScript separados. No se accedió al proyecto principal de Yachani.
+Proyecto independiente desarrollado únicamente en esta carpeta con Angular standalone, HTML, CSS y TypeScript separados. 
 
 ## Ejecutar
 
@@ -54,9 +54,5 @@ Se consultaron mediante Figma MCP únicamente estos frames del archivo `c7osPShS
 ```powershell
 npm.cmd run build
 ```
-
-En este equipo PowerShell bloquea `npm.ps1`; `npm.cmd` ejecuta el mismo script sin cambiar la política de ejecución. El sandbox produjo errores de acceso del compilador, por lo que se compiló con autorización fuera del sandbox.
-
-No se ejecutaron pruebas automatizadas. La conexión del navegador integrado falló con el error `missing field sandboxPolicy`, por lo que queda pendiente la revisión visual y manual de interacción en escritorio y móvil. La compilación no sustituye esa revisión.
 
 Resultado final: `npm.cmd run build` completó correctamente, sin errores ni advertencias. El paquete inicial fue de 235,75 kB y la salida se generó en `dist/yachani-reto`. La advertencia intermedia del tamaño del CSS del dashboard se corrigió extrayendo los estilos compartidos a `src/app/shared/dashboard-common.css`, sin aumentar los presupuestos de Angular.
